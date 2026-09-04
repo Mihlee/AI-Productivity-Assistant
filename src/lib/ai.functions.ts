@@ -194,7 +194,7 @@ export const extractRequestDraft = createServerFn({ method: "POST" })
     });
 
     try {
-      return JSON.parse(text) as Record<string, unknown>;
+      return JSON.parse(text) as RequestDraft;
     } catch {
       throw new Error("Could not read the request details. Please fill them in manually.");
     }
