@@ -30,9 +30,9 @@ export function PhoneMockup() {
             <Bubble side="in">Can I get balayage done Thursday after work?</Bubble>
             <Bubble side="out">
               Yes — balayage &amp; toner is R1 250, about 3 hours. Balayage slots start before 15:00,
-              so 16:30 Thursday would work. Shall I send that through?
+              so 14:30 Thursday would work. Shall I send that through?
             </Bubble>
-            <Bubble side="in">Please do. Sipho, 072 555 0148.</Bubble>
+            <Bubble side="in">Please do. Thandi, 072 555 0148.</Bubble>
 
             <div className="rounded-2xl rounded-tl-sm border border-warning/30 bg-warning/8 p-3">
               <div className="flex items-center justify-between gap-2">
@@ -45,8 +45,8 @@ export function PhoneMockup() {
               </div>
               <dl className="mt-2.5 space-y-1.5 text-[11.5px]">
                 <Row label="Service" value="Balayage & toner" />
-                <Row label="When" value="Thu · 16:30" />
-                <Row label="Price on list" value="R270" />
+                <Row label="When" value="Thu · 14:30" />
+                <Row label="Price on list" value="R1 250" />
               </dl>
               <p className="mt-2.5 text-[10.5px] leading-relaxed text-muted-foreground">
                 Not booked yet — Lumina confirms before it&apos;s final.
