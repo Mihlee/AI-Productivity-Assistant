@@ -16,6 +16,7 @@ import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as RequestsRouteImport } from './routes/requests'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
 import { Route as ChatSlugRouteImport } from './routes/chat.$slug'
+import { Route as OwnerIndexRouteImport } from './routes/owner.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,34 +53,41 @@ const ChatSlugRoute = ChatSlugRouteImport.update({
   path: '/chat/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OwnerIndexRoute = OwnerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OwnerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
-  '/owner': typeof OwnerRoute
+  '/owner': typeof OwnerRouteWithChildren
   '/requests': typeof RequestsRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
+  '/owner/': typeof OwnerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
-  '/owner': typeof OwnerRoute
   '/requests': typeof RequestsRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
+  '/owner': typeof OwnerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
-  '/owner': typeof OwnerRoute
+  '/owner': typeof OwnerRouteWithChildren
   '/requests': typeof RequestsRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
+  '/owner/': typeof OwnerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,15 +99,16 @@ export interface FileRouteTypes {
     | '/requests'
     | '/business/$slug'
     | '/chat/$slug'
+    | '/owner/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/compare'
     | '/discover'
-    | '/owner'
     | '/requests'
     | '/business/$slug'
     | '/chat/$slug'
+    | '/owner'
   id:
     | '__root__'
     | '/'
@@ -109,13 +118,14 @@ export interface FileRouteTypes {
     | '/requests'
     | '/business/$slug'
     | '/chat/$slug'
+    | '/owner/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompareRoute: typeof CompareRoute
   DiscoverRoute: typeof DiscoverRoute
-  OwnerRoute: typeof OwnerRoute
+  OwnerRoute: typeof OwnerRouteWithChildren
   RequestsRoute: typeof RequestsRoute
   BusinessSlugRoute: typeof BusinessSlugRoute
   ChatSlugRoute: typeof ChatSlugRoute
@@ -172,14 +182,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/owner/': {
+      id: '/owner/'
+      path: '/'
+      fullPath: '/owner/'
+      preLoaderRoute: typeof OwnerIndexRouteImport
+      parentRoute: typeof OwnerRoute
+    }
   }
 }
+
+interface OwnerRouteChildren {
+  OwnerIndexRoute: typeof OwnerIndexRoute
+}
+
+const OwnerRouteChildren: OwnerRouteChildren = {
+  OwnerIndexRoute: OwnerIndexRoute,
+}
+
+const OwnerRouteWithChildren = OwnerRoute._addFileChildren(OwnerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompareRoute: CompareRoute,
   DiscoverRoute: DiscoverRoute,
-  OwnerRoute: OwnerRoute,
+  OwnerRoute: OwnerRouteWithChildren,
   RequestsRoute: RequestsRoute,
   BusinessSlugRoute: BusinessSlugRoute,
   ChatSlugRoute: ChatSlugRoute,
