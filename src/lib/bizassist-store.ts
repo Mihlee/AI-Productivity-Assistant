@@ -34,7 +34,7 @@ type StoreState = {
   compare: string[];
 };
 
-const KEY = "bizassist.state.v1";
+const KEY = "bizassist.state.v2";
 
 const seeded: StoreState = {
   requests: [
@@ -60,23 +60,23 @@ const seeded: StoreState = {
     {
       id: "seed-2",
       ref: "BA-1039",
-      businessSlug: "fadehouse-barbers",
-      businessName: "Fadehouse Barbers",
-      customer_name: "Sipho K.",
+      businessSlug: "lumina-hair-studio",
+      businessName: "Lumina Hair Studio",
+      customer_name: "Thandi K.",
       contact: "072 555 0148",
-      service_or_product: "Cut & beard combo",
+      service_or_product: "Balayage & toner",
       preferred_date: "Thu 10 Sep",
-      preferred_time: "16:30",
+      preferred_time: "14:30",
       quantity_if_needed: "1",
-      special_requirements: "Prefers the same barber as last time if possible.",
-      estimated_price_if_known: "R270",
+      special_requirements: "Prefers the same senior stylist as last time if possible.",
+      estimated_price_if_known: "R1 250",
       urgency: "Soon",
       status: "Confirmed",
       createdAt: Date.now() - 1000 * 60 * 60 * 5,
       ownerReply:
-        "Hi Sipho, you're booked for the cut & beard combo on Thursday at 16:30. See you then.",
+        "Hi Thandi, you're booked for balayage & toner on Thursday at 14:30. See you then.",
       aiSummary:
-        "Combo booking for Thu 10 Sep 16:30, inside combo cut-off of 17:00. Barber preference noted but not guaranteed in stored data.",
+        "Balayage booking for Thu 10 Sep 14:30, inside the 15:00 start cut-off. Stylist preference noted but not guaranteed in stored data.",
     },
     {
       id: "seed-3",
