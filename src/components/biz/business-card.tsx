@@ -56,12 +56,14 @@ export function BusinessCard({ business }: { business: Business }) {
         <div className="flex items-center justify-between gap-3">
           <dt className="text-muted-foreground">Popular</dt>
           <dd className="text-right">
-            {cheapest.name} · {cheapest.price}
+            {cheapest?.name} · {cheapest?.price}
           </dd>
         </div>
         <div className="flex items-center justify-between gap-3">
           <dt className="text-muted-foreground">Hours</dt>
-          <dd className="text-right">{business.hours[0].day + " " + business.hours[0].open}</dd>
+          <dd className="text-right">
+            {business.hours[0]?.day} {business.hours[0]?.open}
+          </dd>
         </div>
         <div className="flex items-center justify-between gap-3">
           <dt className="text-muted-foreground">Area</dt>
