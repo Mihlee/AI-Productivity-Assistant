@@ -17,6 +17,7 @@ import { Route as RequestsRouteImport } from './routes/requests'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
 import { Route as ChatSlugRouteImport } from './routes/chat.$slug'
 import { Route as OwnerIndexRouteImport } from './routes/owner.index'
+import { Route as OwnerRequestsIdRouteImport } from './routes/owner.requests.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const OwnerIndexRoute = OwnerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => OwnerRoute,
 } as any)
+const OwnerRequestsIdRoute = OwnerRequestsIdRouteImport.update({
+  id: '/requests/$id',
+  path: '/requests/$id',
+  getParentRoute: () => OwnerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
   '/owner/': typeof OwnerIndexRoute
+  '/owner/requests/$id': typeof OwnerRequestsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
   '/owner': typeof OwnerIndexRoute
+  '/owner/requests/$id': typeof OwnerRequestsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
   '/owner/': typeof OwnerIndexRoute
+  '/owner/requests/$id': typeof OwnerRequestsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/business/$slug'
     | '/chat/$slug'
     | '/owner/'
+    | '/owner/requests/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/business/$slug'
     | '/chat/$slug'
     | '/owner'
+    | '/owner/requests/$id'
   id:
     | '__root__'
     | '/'
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/business/$slug'
     | '/chat/$slug'
     | '/owner/'
+    | '/owner/requests/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -189,15 +201,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OwnerIndexRouteImport
       parentRoute: typeof OwnerRoute
     }
+    '/owner/requests/$id': {
+      id: '/owner/requests/$id'
+      path: '/requests/$id'
+      fullPath: '/owner/requests/$id'
+      preLoaderRoute: typeof OwnerRequestsIdRouteImport
+      parentRoute: typeof OwnerRoute
+    }
   }
 }
 
 interface OwnerRouteChildren {
   OwnerIndexRoute: typeof OwnerIndexRoute
+  OwnerRequestsIdRoute: typeof OwnerRequestsIdRoute
 }
 
 const OwnerRouteChildren: OwnerRouteChildren = {
   OwnerIndexRoute: OwnerIndexRoute,
+  OwnerRequestsIdRoute: OwnerRequestsIdRoute,
 }
 
 const OwnerRouteWithChildren = OwnerRoute._addFileChildren(OwnerRouteChildren)
