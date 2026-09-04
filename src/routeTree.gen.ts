@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
 import { Route as ChatSlugRouteImport } from './routes/chat.$slug'
@@ -17,6 +18,11 @@ import { Route as ChatSlugRouteImport } from './routes/chat.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -37,12 +43,14 @@ const ChatSlugRoute = ChatSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/discover': typeof DiscoverRoute
   '/business/$slug': typeof BusinessSlugRoute
   '/chat/$slug': typeof ChatSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/discover' | '/business/$slug' | '/chat/$slug'
+  fullPaths: '/' | '/compare' | '/discover' | '/business/$slug' | '/chat/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/discover' | '/business/$slug' | '/chat/$slug'
-  id: '__root__' | '/' | '/discover' | '/business/$slug' | '/chat/$slug'
+  to: '/' | '/compare' | '/discover' | '/business/$slug' | '/chat/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/discover'
+    | '/business/$slug'
+    | '/chat/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
   DiscoverRoute: typeof DiscoverRoute
   BusinessSlugRoute: typeof BusinessSlugRoute
   ChatSlugRoute: typeof ChatSlugRoute
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -104,6 +127,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
   DiscoverRoute: DiscoverRoute,
   BusinessSlugRoute: BusinessSlugRoute,
   ChatSlugRoute: ChatSlugRoute,

@@ -45,7 +45,7 @@ function Compare() {
     setSummary("");
     try {
       const res = await runCompare({ data: { slugs } });
-      setSummary(res.summary);
+      setSummary(res.notes);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not build the comparison.");
     } finally {
