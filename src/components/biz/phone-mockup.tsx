@@ -18,7 +18,7 @@ export function PhoneMockup() {
               FH
             </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-semibold">Fadehouse Barbers</p>
+              <p className="truncate text-[13px] font-semibold">Lumina Hair Studio</p>
               <p className="flex items-center gap-1.5 text-[11px] text-primary">
                 <span className="size-1.5 rounded-full bg-primary" />
                 BizAssist AI · answering now
@@ -27,9 +27,9 @@ export function PhoneMockup() {
           </div>
 
           <div className="space-y-2.5 px-3.5 py-4">
-            <Bubble side="in">Can I get a fade and beard done Thursday after work?</Bubble>
+            <Bubble side="in">Can I get balayage done Thursday after work?</Bubble>
             <Bubble side="out">
-              Yes — the cut &amp; beard combo is R270, about 70 minutes. Combo slots run until 17:00,
+              Yes — balayage &amp; toner is R1 250, about 3 hours. Balayage slots start before 15:00,
               so 16:30 Thursday would work. Shall I send that through?
             </Bubble>
             <Bubble side="in">Please do. Sipho, 072 555 0148.</Bubble>
@@ -44,12 +44,12 @@ export function PhoneMockup() {
                 </span>
               </div>
               <dl className="mt-2.5 space-y-1.5 text-[11.5px]">
-                <Row label="Service" value="Cut & beard combo" />
+                <Row label="Service" value="Balayage & toner" />
                 <Row label="When" value="Thu · 16:30" />
                 <Row label="Price on list" value="R270" />
               </dl>
               <p className="mt-2.5 text-[10.5px] leading-relaxed text-muted-foreground">
-                Not booked yet — Fadehouse confirms before it&apos;s final.
+                Not booked yet — Lumina confirms before it&apos;s final.
               </p>
             </div>
           </div>
