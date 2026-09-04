@@ -134,6 +134,20 @@ const ExtractInput = z.object({
     .max(40),
 });
 
+export type RequestDraft = {
+  customer_name: string | null;
+  contact: string | null;
+  service_or_product: string | null;
+  preferred_date: string | null;
+  preferred_time: string | null;
+  quantity_if_needed: string | null;
+  special_requirements: string | null;
+  estimated_price_if_known: string | null;
+  urgency: "Standard" | "Soon" | "Urgent";
+  summary: string;
+  missing_fields: string[];
+};
+
 const draftSchema = {
   type: "object",
   additionalProperties: false,
